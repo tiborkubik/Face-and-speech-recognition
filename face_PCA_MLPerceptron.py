@@ -9,6 +9,8 @@ from sklearn.metrics import classification_report
 WIDTH = 80
 HEIGHT = 80
 CLASSES = []
+TRAIN_DIR = "data/train"
+EVAL_DIR = "data/eval2"
 
 # Displaying Eigenfaces
 def show_eigenfaces(pca):
@@ -21,10 +23,10 @@ def show_eigenfaces(pca):
 # # # Getting all training data from data/train
 print("STEP1: getting training and evaluation data")
 toTrain = []
-filenames= os.listdir("data/train")
+filenames= os.listdir(TRAIN_DIR)
 
 for filename in filenames: # loop through all the files and folders
-    person = png2fea("data/train/" + filename).values()
+    person = png2fea(TRAIN_DIR + "/" + filename).values()
     CLASSES.extend([filename] * len(person))  # adding given folder name as one class(one person)
     toTrain.extend(person)                    # adding feature of one person in the arre
 
@@ -32,7 +34,7 @@ for filename in filenames: # loop through all the files and folders
 toEvaluate = []
 toEvalNames = []
 
-evaluateDict = png2fea('data/eval')
+evaluateDict = png2fea(EVAL_DIR)
 
 toEvalNames.extend(evaluateDict.keys())
 temp = evaluateDict.values()
