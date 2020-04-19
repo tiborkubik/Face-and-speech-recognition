@@ -148,7 +148,7 @@ def classification(evalData, trainClasses, gaussWeights, meanValsGauss, covarMat
     file.close()
     print("STEP5 Done: Classification ended.\n")
 
-    print("Classification is finished. Check file \'audo_GMM.txt\' for the results.")
+    print("Classification is finished. Check file \'audio_GMM.txt\' for the results.")
 
 # main function
 def main():
