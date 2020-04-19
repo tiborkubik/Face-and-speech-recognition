@@ -196,8 +196,8 @@ def main():
     pca = performPCA(toTrain_2d)
 
     # To see the graph of PCA and all eigenfaces, set this variable to 1
-    showPCAandEigens = 0
-    if(showPCAandEigens == 1):
+    showPCAandEigenss = 0
+    if(showPCAandEigenss == 1):
         showPCAandEigens(pca)
 
     eigenfaces = pca.components_.reshape((COMPONENTS, WIDTH, HEIGHT))
@@ -210,7 +210,7 @@ def main():
 
     predict(classifier, evalPCA, toEvalNames)
 
-    print("CLASSIFICATION is done successfuly. \nCheck file xjezik03_xkubik34_image_PCA_MLPerceptron.txt for the results.")
+    print("CLASSIFICATION is done successfuly. \nCheck file image_PCA_MLPerceptron.txt for the results.")
 
     sys.exit(0)
 
