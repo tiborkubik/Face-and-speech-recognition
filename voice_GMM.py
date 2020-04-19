@@ -9,14 +9,10 @@
 # # # # # # # # # #
 
 import os
-import sys
 from ikrlib import wav16khz2mfcc, train_gmm, logpdf_gmm
 import matplotlib.pyplot as plt
-import pprint
 import numpy as np
 from numpy.random import randint
-from glob import glob
-import math
 
 # Train and evaluation paths for persons. Change for your need!
 TRAIN_DIR = "data/train2"
