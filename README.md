@@ -62,11 +62,15 @@ Výsledok klasifikácie sa nachádza v súbore **audio_GMM.txt**. Ten bude obsah
 Vyskúšali sme si prakticky veci z prednášok, a to hlavne ako funguje GMM. Pri implementácii sme skúšali, aké su vplyvy rôznch faktorov na kvalitu klasifikátoru, napríklad počet iterácii alebo počet gaussoviek pre jednotlivé triedy. 
 Kvalitu systému sme skúšali tak, že sme ho vyhodnocovali ako na videných dátach, tak aj na nevidených - z pôvodne trénovacích dát sme niekoľko presunuli do evaluačných. Pre obe možnosti sme nastavovali rôzne hodnoty vyššie spomínaných faktorov. 
 Klasifikátor sme taktiež skúšali tak, že sme preorganizovali trénovacie dáta. Pre každú osobu sme si vytvorili zvláštnu triedu. Klasifikátor tak dosahoval menšej hodnoty False Alarmu, no nakoniec sme sa rozhodli trénovať predsa len na dvoch triedach - target a non-target.
+
 ---
+
 #### Systém na detekciu osoby z fotografie pomocou PCA a MLPClassifier
 Tento systém je implementovaný v súbore `face_PCA_MLPerceptron.py`. Pri jeho implementácii sme použili funkciu `png2fea` z knižnice `ikrlib.py` na extrakciu fotografii. Ďalej sme použili rozsiahlu ML knižnicu `sklearn`, z ktorej sme si importovali **PCA** a **MLPClassifier**.
+
 ##### Prerekvizity
 Je nutné dodržať rovnaké prerekvizity ako v predošlom systéme + je nutné mať nainštalovanú knižnicu `sklearn`. Je nutné dodržať rovnakú štruktúru a aj skutočnosť, že trieda target musí byť poslednou triedou vrámci priečinku train.
+
 ##### Spustenie
 Aplikácia sa spúšťa príkazom `python face_PCA_MLPerceptron.py`, pričom prepokladáme, že sa nachádzame v súbore `src`. Nie je nutno dodávať žiadne argumenty. 
 Je možné meniť cesty k trénovacím a evaluačným dátam. Konkrétne na riadkoch **26 - 28**. Je nutné špecifikovať počet tried, do ktorých budú dáta klasifikované.
@@ -84,6 +88,8 @@ Výsledok klasifikácie sa nachádza v súbore **image_PCA_MLPerceptron.txt**. T
 Pri tomto systéme sme si vyskúšali **Analýzu hlavných komponentov**(PCA) spolu s chovaním **Multi-layer perceptronu** v praxi. Pre PCA je kľúčové vybrať správny počet komponent, na čo sme použili pomocnú funkciu, ktorá nam vykreslí graf, ktorý nám ukázal, aký počet komponent by mal byť dostačujúci. Rovnako sme si poskúšali rôzne nastavenia, ktoré ovplyvňovali kvalitu extrahovaných dát. 
 Pri nastavovaní samotného klasifikátoru bolo možností ešte viac. Skúšali sme kombinácie rôznych aktivačných funkcii, rôzne solvre pre optimalizáciu váh, rôzne počty skrytých vrstiev a podobné možnosti, ktoré ponúka MLP klasifikátor z knižnice sklearn.
 Konečné nastavenie nám po mnohých pokusoch (+ sme sa riadili aj odporučanými nastaveniami z dokumentácie a taktiež sme si nechali poradiť niektorými doporučovanými nastaveniami komunity) dáva pomerne kvalitné výsledky na videných aj nevidených dátach.
+
 ---
+
 #### Ostatné pokusy
 Okrem týchto dvoch systémov sme skúšali postaviť aj ďalšie systémy. Tie však zostanú neodovzdané, pretože si zaslúžia oveľa viac priestoru na ich vypracovanie a teda dosahovanie kvalitných výsledkov. Za zmienku možno stojí rozpracovaný klasifikátor využívajúci extrakciu pomocou **Histogram of oriented gradients**(HOG) či veľmi populárnej knižnice **Facenet** a stavba klasifikátora technológiami **tensor** a pomocu Metódy podporných vektorov - **Support Vector Machines**(SVM).  
