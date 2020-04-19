@@ -120,7 +120,6 @@ def classification(evalData, trainClasses, gaussWeights, meanValsGauss, covarMat
     # For every person to evaluate, calculate the sum of LLs for evaluation data
     for evalPerson in evalData:
         llVals = []
-        score = []
         name = evalPerson.split('/')[2]
         name = name.split('.')[0]
         print("Classifing person ", name)
