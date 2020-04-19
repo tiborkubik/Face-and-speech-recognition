@@ -1,3 +1,13 @@
+# # # # # # # # # #
+# @title Face classifier for SUR/2019L course using PCA for data extraction and Multi-layer perceptron for classifying
+#
+# @brief This code classifies a person face according to seen .png faces
+#
+# @author Tibor Kubik (xkubik34@stud.fit.vutbr.cz)
+#
+# @author Andrej Jezik (xjezik03@stud.fit.vutbr.cz)
+# # # # # # # # # #
+
 from ikrlib import png2fea
 import numpy as np
 import matplotlib.pyplot as plt
@@ -13,8 +23,11 @@ HEIGHT = 80
 
 CLASSES = []
 
-TRAIN_DIR = "data/train"
-EVAL_DIR = "data/eval2"
+TRAIN_DIR = "data/train2"
+EVAL_DIR = "data/eval"
+N_OF_CLASSES = 2 # 2 if we decide only target-nontarget and 20 in there is 1 class for one person
+# Train and test with GMM models with diagonal covariance matrices
+
 
 # Function that displays eigenfaces created form imput images
 #
@@ -133,19 +146,19 @@ def predict(classifier, evalPCA, toEvalNames):
 
     #print(classification_report(toEvalNames, probaClass))
 
-    file = open("xjezik03_xkubik34_image_PCA_MLPerceptron.txt", "w")
+    file = open("image_PCA_MLPerceptron.txt", "w")
     for name, proba in zip(toEvalNames, probaClass):
         name = name.split('/')[2]
         name = name.split('.')[0]
 
-        if(proba.tolist()[19] >= 0.5):
+        if(proba.tolist()[N_OF_CLASSES-1] >= 0.6):	# 0.6 is threshold
             HD = 1
         else:
             HD = 0
 
         file.write(name)
         file.write(" ")
-        file.write(str(proba.tolist()[19])) # target is 20th class.
+        file.write(str(proba.tolist()[N_OF_CLASSES-1])) # target is last.
         file.write(" ")
         file.write(str(HD))
         file.write("\n")
@@ -155,7 +168,7 @@ def predict(classifier, evalPCA, toEvalNames):
     print("STEP7 done.\n")
 
 
-
+# main function
 def main():
     # # # Getting all training data from data/train
     print("STEP1: getting training and evaluation data")
