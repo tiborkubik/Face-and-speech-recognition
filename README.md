@@ -13,7 +13,7 @@ Ako riešenie tohto projektu sme postavili nasledujúce systémy:
 #### Systém na detekciu rečníka pomocou GMM
 Tento systém je implementovaný v súbore `voice_GMM.py`. Pri jeho implementácii sme použili funkcie z knižnice `ikrlib.py` a to konkrétne funkciu na extrahovanie trénovacích a evaluačných `.wav` súborov a funkcie na klasifikáciu pomocou **GMM**.
 ##### Prerekvizity
-Je nutné mať stiahnutý python. Projekt by mal byť funkcný aj na novších verziach pythonu(3+), no je odskúšaný aj na verzii Python2.6. Nutné knižnice: `matplotlib`, `numpy` a `scipy` kompatibilné s verziou Pythonu, ktorou budete projekt spúšťať. Ďalej je nutné dodržať hierarchiu súborov. Mala by vyzerať nasledovne:
+Je nutné mať stiahnutý Python. Projekt je implementovaný a spustiteľný na verzii Python 2.7.17. Použitie tejto staršej verzie je hlavne z dôvodu použitia funkcii knižnice ikrlib.py, kde nám robilo problémy importovanie niekoľkých knižníc vo vyšších verziach. Neboli sme si istí licenciou na túto knižnicu, tak sme sa rozhodli nič nekopírovať/upravovať a použiť mierne zastaralú verziu Pythonu. Nutné knižnice: `matplotlib`, `numpy`, `glob` a `scipy` kompatibilné s verziou Pythonu, ktorou budete projekt spúšťať. Ďalej je nutné dodržať hierarchiu súborov. Mala by vyzerať nasledovne:
 ```
 .
 │   
@@ -26,7 +26,7 @@ Je nutné mať stiahnutý python. Projekt by mal byť funkcný aj na novších v
        │ 
        └─── train
        │       │
-       │       └───  no-target
+       │       └───  non-target
        │       │       │ f401_03_p01_i0_0.png
        │       │       │ f401_03_p01_i0_0.wav
        │       │       │ .
@@ -44,9 +44,9 @@ Je nutné mať stiahnutý python. Projekt by mal byť funkcný aj na novších v
                │ .
                │ .
 ```
-Pričom podsúbory v **train** definujú triedy. **Je nutné, aby dáta osoby, o ktorej chceme zistiť, či je to práve tá osoba - teda target, boli posledným priečinkom v priečinku train!**
+Pričom podsúbory v **train** definujú triedy. **Je nutné, aby dáta osoby, o ktorej chceme zistiť, či je to práve tá osoba - teda target, boli posledným priečinkom v priečinku train!** Z toho vyplýva, že je veľmi podstatné dodržanie aj názvov jednotlivých priečinkov.
 ##### Spustenie
-Aplikácia sa spúšťa príkazom `python voice_GMM.py`, pričom prepokladáme, že sa nachádzame v súbore `src`. Nie je nutno dodávať žiadne argumenty. 
+Aplikácia sa spúšťa príkazom `python2.7 voice_GMM.py`(prípadne `python voice_GMM.py`), pričom prepokladáme, že sa nachádzame v súbore `src`. Nie je nutno dodávať žiadne argumenty. 
 Je možné meniť cesty k trénovacím a evaluačným dátam. Konkrétne na riadkoch **18 - 21**. Je nutné špecifikovať počet tried, do ktorých budú dáta klasifikované.
 
 ```python
@@ -69,7 +69,7 @@ Klasifikátor sme taktiež skúšali tak, že sme preorganizovali trénovacie d�
 Tento systém je implementovaný v súbore `face_PCA_MLPerceptron.py`. Pri jeho implementácii sme použili funkciu `png2fea` z knižnice `ikrlib.py` na extrakciu fotografii. Ďalej sme použili rozsiahlu ML knižnicu `sklearn`, z ktorej sme si importovali **PCA** a **MLPClassifier**.
 
 ##### Prerekvizity
-Je nutné dodržať rovnaké prerekvizity ako v predošlom systéme + je nutné mať nainštalovanú knižnicu `sklearn`. Je nutné dodržať rovnakú štruktúru a aj skutočnosť, že trieda target musí byť poslednou triedou vrámci priečinku train.
+Je nutné dodržať rovnaké prerekvizity ako v predošlom systéme + je nutné mať nainštalovanú knižnicu `sklearn`. Je nutné dodržať rovnakú štruktúru a aj skutočnosť, že trieda target musí byť poslednou triedou vrámci priečinku train(opäť je teda kľúčové dodržanie názvov priečinkov).
 
 ##### Spustenie
 Aplikácia sa spúšťa príkazom `python face_PCA_MLPerceptron.py`, pričom prepokladáme, že sa nachádzame v súbore `src`. Nie je nutno dodávať žiadne argumenty. 
